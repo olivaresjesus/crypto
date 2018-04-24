@@ -1,0 +1,142 @@
+
+	<div class="row font-white">
+		<div class="col-sm-12">
+			<img ng-src='{{ config.api_url + config.carpeta_imagenes + config.img.home_principal }}' style="border-radius: 25px;" class="img-responsive">
+			<div class="text-home-principal text-center">	
+
+				<p class="font-subtitle sans">
+					{{ lang[0] }}
+					<br><br>
+					{{ lang[1] }}
+					<br><br>
+					{{ lang[2] }}
+					<br><br>
+					{{ lang[3] }}
+				</p>
+				<p class="mobil-off serif">	
+					{{ lang[4] }}	</p>
+
+			</div>			
+		</div>
+	</div>
+
+	<div class="pull-right font-white sans">
+		<span>{{ lang[5] }}</span>
+		<a href="#" class="btn btn-primary" ng-click="registrar()">{{ lang[6] }}</a>
+	</div>
+<!--
+	<div class="row font-white"> 
+		<div class="col-sm-8">				
+		 	<div>CRYPTOMONEDAS</div>
+			<div ng-repeat="img in config.img.criptomonedas" class="col-sm-3">
+					<img ng-src='{{config.api_url + config.carpeta_imagenes + img}}' class="img-responsive img-circle">
+			</div>	
+		</div>
+	</div>
+-->
+
+
+	<div class="row font-white sans"> 
+		<div class="col-sm-8">				
+		 	<div class="font-subtitle font-white">{{ lang[7] }}</div>
+		 	<div class="row">
+		 		<div class="col-xs-3">
+		 			<img ng-src='{{config.api_url + config.carpeta_imagenes + config.img.criptomonedas[0]}}' class="img-responsive img-circle">
+		 		</div>
+		 		<div class="col-xs-3">
+		 			<img ng-src='{{config.api_url + config.carpeta_imagenes + config.img.criptomonedas[1]}}' class="img-responsive img-circle">
+		 		</div>
+		 		<div class="col-xs-3">
+		 			<img ng-src='{{config.api_url + config.carpeta_imagenes + config.img.criptomonedas[2]}}' class="img-responsive img-circle">
+		 		</div>
+		 		<div class="col-xs-3">
+		 			<img ng-src='{{config.api_url + config.carpeta_imagenes + config.img.criptomonedas[3]}}' class="img-responsive img-circle">
+		 		</div>
+		 	</div>
+		 	<div class="row">
+		 		<div class="col-xs-3">
+		 			<img ng-src='{{config.api_url + config.carpeta_imagenes + config.img.criptomonedas[4]}}' class="img-responsive img-circle">
+		 		</div>
+		 		<div class="col-xs-3">
+		 			<img ng-src='{{config.api_url + config.carpeta_imagenes + config.img.criptomonedas[5]}}' class="img-responsive img-circle">
+		 		</div>
+		 		<div class="col-xs-3">
+		 			<img ng-src='{{config.api_url + config.carpeta_imagenes + config.img.criptomonedas[6]}}' class="img-responsive img-circle">
+		 		</div>
+		 		<div class="col-xs-3">
+		 			<img ng-src='{{config.api_url + config.carpeta_imagenes + config.img.criptomonedas[7]}}' class="img-responsive img-circle">
+		 		</div>
+		 	</div>
+		</div>
+		<div class="col-xs-4">						
+				<div id="fb-root"></div>
+					<script>(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) return;
+					  js = d.createElement(s); js.id = id;
+					  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11';
+					  fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));</script>
+				
+				<div class="fb-page" data-href="https://www.facebook.com/athenaup" data-tabs="timeline" data-width="450" data-height="400" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+					<blockquote cite="https://www.facebook.com/athenaup" class="fb-xfbml-parse-ignore">
+						<a href="https://www.facebook.com/athenaup">
+							Athena Up
+						</a>
+					</blockquote>
+				</div>		
+		</div>
+	</div>
+
+	<div class="font-subtitle font-white sans">
+		{{ lang[8] }}
+	</div>
+		
+	<div class="row font-white">
+		<div ng-repeat="img in config.img.pagos" class="col-xs-4 col-sm-2">
+				<img ng-src='{{config.api_url + config.carpeta_imagenes + img}}' class="img-responsive img-circle">
+		</div>	
+	</div>
+	
+	<div class="row sans">
+		<div class="col-xs-3">
+			<div class="font-subtitle font-white">{{ lang[9] }}</div>	
+			<img ng-src='{{config.api_url + config.carpeta_imagenes + config.img.invertir}}' class="img-responsive borde-redondeado-grande">			
+		</div>
+
+		<div class="col-sm-8 fondo-azul-opaco borde-redondeado-grande font-white" style="margin-top: 35px; margin-left: 20px;">
+			<span class="serif">
+				{{ lang[10] }}<br>
+
+				{{ lang[11] }} <br>
+				{{ lang[12] }}
+			</span>
+		</div>		
+	</div>
+
+	<div class="font-subtitle font-white sans">
+		{{ lang[13] }}
+	</div>
+
+	<div>
+		<img ng-src='{{config.api_url + config.carpeta_imagenes + config.img.cambio}}' class="img-responsive">
+	</div>
+
+	<div class="font-subtitle font-white sans">
+		{{ lang[14] }}
+	</div>
+
+	<div class="row">
+		<div class="col-xs-5">
+			<img ng-src='{{config.api_url + config.carpeta_imagenes + config.img.boveda}}' class="img-responsive borde-redondeado-grande" style="display: flex; align-self: center;">
+		</div>
+
+		<div class="col-xs-7 fondo-azul-opaco borde-redondeado-grande font-white">
+			<span class="serif">
+				 <br>
+				{{ lang[15] }}
+				 <br>
+				{{ lang[16] }}
+			</span>
+		</div>
+	</div>

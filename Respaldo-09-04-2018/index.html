@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html ng-app='appCrypto'>
+	<head>
+		<meta charset="utf-8">
+		<title>Athena Crypto Bank</title>
+		<meta name="viewport" content="width=device-width">
+
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/angular-material.min.css">
+
+		<script src="libs/angular.min.js"></script>	
+		<script src="js/appCrypto.js"></script>
+		<script src="libs/angular-route.min.js"></script>
+		<script src="libs/jquery1.9.1.js"></script>
+		<script src="libs/bootstrap.min.js"></script>		
+        <script src="js/jquery.ui.core.js"></script>
+        <script src="js/jquery.ui.widget.js"></script>
+        <script src="js/jquery.ui.datepicker.js"></script>
+		<script src="libs/angular-animate.min.js"></script>
+		<script src="libs/angular-messages.min.js"></script>
+		<script src="libs/angular-route.min.js"></script>
+		<script src="libs/angular-sanitize.js"></script>
+		<script src="libs/angular-aria.min.js"></script>
+		<script src="libs/angular-material.min.js"></script>
+		<script src="libs/moment.js"></script>
+
+		<script src="controller/home.js"></script>
+		<script src="controller/about.js"></script>
+		<script src="controller/services.js"></script>
+		<script src="controller/contact.js"></script>
+		<script src="controller/acount.js"></script>
+		<script src="controller/users.js"></script>
+		<script src="controller/exit.js"></script>
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115905221-5"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-115905221-5');
+		</script>
+	</head>
+	<body>
+
+		<ul class="lang hidden-xs" ng-controller='home'>
+			<li>				
+				<a ng-href="{{rutaEs}}" >
+					<img ng-src='{{ config.api_url + config.carpeta_imagenes + config.img.espanyol }}' class="img-responsive borde-redondeado-grande">
+				</a> 	
+			</li>
+			<li>
+				<a ng-href="{{rutaEn}}" >
+					<img ng-src='{{ config.api_url + config.carpeta_imagenes + config.img.english }}' class="img-responsive borde-redondeado-grande">
+				</a>		
+			</li>
+			<li>
+				<a ng-href="{{rutaIt}}" >
+					<img ng-src='{{ config.api_url + config.carpeta_imagenes + config.img.italian }}' class="img-responsive borde-redondeado-grande">
+				</a>	
+			</li>
+		</ul>
+
+		<nav class="navbar navbar-inverse" class="sans">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>                        
+		        </button>
+		      <!--<a class="navbar-brand" href="index.html"><img src="img/athenaup0.png"></a>-->
+		    </div>
+
+		    <div ng-controller='home'>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li><img ng-src='{{config.api_url + config.carpeta_imagenes + config.logo}}'></li>
+						<li class="font-white athena-crypto-bank">ATHENA CRYPTO BANK</li>
+						<li class="text-muted"><a ng-href="#/crypto/{{ routeLanguaje }}"  ng-class=" { active :esActivo('/crypto') } " class="sans">{{ menu[0] }}</a></li>
+						<li class="text-muted"><a ng-href="#/about/{{ routeLanguaje }}"  ng-class=" { active :esActivo('/about') } " class="sans">{{ menu[1] }}</a></li>
+						<li class="text-muted"><a ng-href="#/services/{{ routeLanguaje }}"  ng-class=" { active :esActivo('/services') } " class="sans">{{ menu[2] }}</a></li>
+						<li class="text-muted"><a ng-href="#/contact/{{ routeLanguaje }}"  ng-class=" { active :esActivo('/contact') } " class="sans">{{ menu[3] }}</a> </li>
+						<li class="text-muted"><a ng-href="#/acount/{{ routeLanguaje }}"  ng-class=" { active :esActivo('/acount') } " class="sans">{{ menu[4] }}</a> </li>						
+						<li class=" hidden-sm hidden-md hidden-lg">
+							<a href="#/crypto/es" >
+								<img ng-src='{{ config.api_url + config.carpeta_imagenes + config.img.espanyol }}' class="img-responsive borde-redondeado-grande">
+							</a> 							
+						</li>
+						<li class=" hidden-sm hidden-md hidden-lg">						
+							<a href="#/crypto/en" >
+								<img ng-src='{{ config.api_url + config.carpeta_imagenes + config.img.english }}' class="img-responsive borde-redondeado-grande">
+							</a>							
+						</li>	
+						
+						<li class=" hidden-sm hidden-md hidden-lg">
+							<a href="#/crypto/it" >
+								<img ng-src='{{ config.api_url + config.carpeta_imagenes + config.img.italian }}' class="img-responsive borde-redondeado-grande">
+							</a>							
+						</li>
+					</ul>
+				</div>
+		    </div>
+		  </div>
+		</nav>  
+
+		<div class="container" ng-view>
+			
+		</div>
+
+		<div style="height: 80px;"></div>
+		<footer>
+			<b>Copyright © Athena Crypto Bank Sa de CV</b>
+		</footer>
+
+		<div class="modal fade"  id="mdestandar" ng-controller="home">
+		      <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header modal-warning">
+		                <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <p align="center"><b><i class="glyphicon glyphicon-info-sign"></i>&nbsp;Registrarse en Athena Crypto Bank</b></p>
+		            </div>
+		            <div class="modal-body">
+		                <div> 
+								<form class="registrar" name="formulario" novalidate="">
+									<div class="form-group">				
+						                <div class="input-group">
+						                    <span class="input-group-addon red" >*</span><span class="input-group-addon" ><label for="name">Nombre:</label></span>
+						                    <input type="text" name="name" id="name" placeholder="Name" required="" class="form-control" ng-model="user.nombre">
+						               </div>						
+						                <div class="input-group">
+						                    <span class="input-group-addon red" >*</span><span class="input-group-addon" ><label for="lastname">LastName:</label></span>
+						                    <input type="text" name="lastname" id="lastname" placeholder="lastname" required="" class="form-control" ng-model="user.apellido">
+						               </div>				
+						                <div class="input-group">
+						                    <span class="input-group-addon red" >*</span><span class="input-group-addon" ><label for="email">E-mail:</label></span>
+						                    <input type="text" name="email" id="email" placeholder="E-mail" required="" class="form-control"  ng-model="user.correo">
+						               </div>			
+                                        <div class="input-group">
+                                            <span class="input-group-addon red">*</span><span class="input-group-addon"><label for="nacionalidad">Pais:</span>
+                                            <select id="nacionalidad" name="nacionalidad" required class="form-control"  ng-model="user.nacionalidad">
+                                                <option value="">Seleccione Pais</option>
+                                                <option ng-repeat="pais in paises" ng-value="pais.id">{{pais.pais}}</option>
+                                            </select>
+                                        <!--    <select id="nacionalidad" name="nacionalidad" required class="form-control" ng-options="pais as pais.pais for pais in paises track by pais.id" ng-model="user.nacionalidad"> 
+                                                <option value="">Seleccione Pais</option>
+                                            </select> -->
+                                        </div>			
+						                <div class="input-group">
+						                    <span class="input-group-addon red" >*</span><span class="input-group-addon" ><label for="telefono">Telefono:</label></span>
+						                    <input type="text" name="telefono" id="telefono" placeholder="Telefono" required="" class="form-control" ng-model="user.telefono" onkeypress="checkInteger(event)">
+						               </div>		
+						                <div class="input-group">
+						                    <span class="input-group-addon red" >*</span><span class="input-group-addon" ><label for="telefono2">Telefono 2:</label></span>
+						                    <input type="text" name="telefono2" id="telefono2" placeholder="Telefono 2" required="" class="form-control" ng-model="user.telefono2" onkeypress="checkInteger(event)">
+						               </div>				
+						                <div class="input-group">
+						                    <span class="input-group-addon red" >*</span><span class="input-group-addon" ><label for="pass">Contraseña:</label></span>
+						                    <input type="password" name="pass" id="pass" placeholder="Contraseña" required="" class="form-control" ng-model="user.pass">
+						               </div>		
+						                <div class="input-group">
+						                    <span class="input-group-addon red" >*</span><span class="input-group-addon" ><label for="pass2">Confirmar Contraseña:</label></span>
+						                    <input type="password" name="pass2" id="pass2" placeholder="Confirmar Contraseña" required="" class="form-control" ng-model="user.pass2">
+						               </div>   
+						               <input type="hidden" ng-model="user.accion">
+									</div>
+								</form>
+		                </div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-primary" ng-click="newUser()" ng-disabled="formulario.$invalid || user.pass!=user.pass2"><i class="glyphicon glyphicon-ok"></i>&nbsp;Registrar</button>
+		        <!--        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="newUser()"><i class="glyphicon glyphicon-ok"></i>&nbsp;Registrar</button>    -->
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+		<div class="modal fade"  id="mdvalidation">
+		      <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header modal-warning">
+		                <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <p align="center"><b><i class="glyphicon glyphicon-info-sign"></i>&nbsp;Registro</b></p>
+		            </div>
+		            <div class="modal-body">
+		                <div id="mdalert" class="alert alert-success"> 
+								Registro Satisfactorio
+		                </div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="glyphicon glyphicon-ok" ></i>&nbsp;Cerrar</button>
+		        <!--        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="newUser()"><i class="glyphicon glyphicon-ok"></i>&nbsp;Registrar</button>    -->
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		
+
+		<div class="modal fade"  id="mdNoValidation">
+		      <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header modal-warning">
+		                <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <p align="center"><b><i class="glyphicon glyphicon-info-sign"></i>&nbsp;Registro</b></p>
+		            </div>
+		            <div class="modal-body">
+		                <div id="mdalert" class="alert alert-warning"> 
+								Por favor verifique que los datos ingresados son Correctos
+		                </div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="glyphicon glyphicon-ok" ></i>&nbsp;Cerrar</button>
+		        <!--        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="newUser()"><i class="glyphicon glyphicon-ok"></i>&nbsp;Registrar</button>    -->
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		
+		<script src="js/generales.js"></script>
+
+		<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11';
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+		
+	</body>
+</html>

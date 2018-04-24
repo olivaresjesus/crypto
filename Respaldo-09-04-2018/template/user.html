@@ -1,0 +1,91 @@
+<div class="table-responsibe"  ng-show="user.session && user.id_tipo_usuario != 2">
+	
+	<div class="form-group">				
+        <div class="input-group">
+            <span class="input-group-addon" ><label for="name">Buscar</label></span>
+            <input type="text" ng-model='search' placeholder="Buscar"  class="form-control">
+       </div>
+   </div>
+
+	<table class="table table-condensed">
+		<thead>
+			<tr>
+				<th rowspan="2">Nombre</th>
+				<th rowspan="2">Apellido</th>
+				<th rowspan="2">Pais</th>
+				<th rowspan="2">Correo</th>
+				<th rowspan="2">Telefono</th>
+				<th rowspan="2">Criptomoneda</th>
+				<th colspan="2">Saldo</th>
+				<th rowspan="2">Fecha</th>
+				<th rowspan="2">Guardar</th>
+			</tr>
+			<tr>
+				<th>Inversión</th>
+				<th>Banco</th>			
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="user in users | filter: search" >
+				<form id="monto{{$index}}" name="monto{{$index}}" novalidate="">
+					<td>
+						{{user.nombre}}
+					</td>
+					<td>
+						{{user.apellido}}
+					</td>
+					<td>
+						{{user.pais}}
+					</td>
+					<td>
+						{{user.correo}}
+					</td>
+					<td>
+						{{user.telefono}}
+					</td>
+					<td>
+						<select ng-model="user.cripto" class="form-control" ng-change="saldo(user.id,user.cripto)" required="">
+							<option value="">Seleccione</option>
+				            <option ng-repeat="cripto in criptomonedas" ng-value="cripto.id">{{cripto.criptomoneda}}</option>
+						</select>			
+					</td>
+					<td>
+						<input type="text" class="form-control" ng-model="user.inversion" required="" onkeypress="checkPercent(event)">
+					</td>
+					<td>
+						<input type="text" class="form-control" ng-model="user.banco" required="" onkeypress="checkPercent(event)">
+					</td>
+					<td>
+					      <md-datepicker ng-model="user.fecha" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+					    
+					</td>
+					<td>
+						<button type="button" ng-click="monto(user.id,user.cripto,user.fecha,user.inversion,user.banco)" class="form-control" ng-disabled="monto{{$index}}.$invalid"><span class="glyphicon glyphicon-plus"></span></button>
+					</td>
+				</form>
+			</tr>
+		</tbody>
+	</table>
+
+	<a class="glyphicon glyphicon-remove"  href="#/exit"></a>
+
+</div>
+
+
+
+
+
+
+<div class="row" ng-show="!user.session || user.id_tipo_usuario==2">
+	<div class="col-xs-10 col-xs-offset-1 sans alert alert-danger text-center accessDenied">
+		Usted no Puede Ingresar a esta Pagina.
+	</div>
+</div>
+
+
+
+
+
+
+
+

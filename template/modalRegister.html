@@ -1,0 +1,35 @@
+
+<md-dialog aria-label="Mango (Fruit)">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Saldo Actual</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+          <span class="container row" ng-repeat="saldo in saldos">
+            <div class="alert alert-success text-center col-md-10 col-md-offset-1">
+             <b> {{ saldo.criptomoneda }} </b>
+            </div>
+            <div class="alert alert-warning col-md-8 col-md-offset-2">
+              <p>
+                <b>Inversión:</b> {{ saldo.inversion }}
+              </p>
+              <br>
+              <p>
+                <b>Banco:</b> {{ saldo.banco }}
+              </p>
+            </div>
+          </span>
+
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>
+

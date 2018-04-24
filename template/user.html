@@ -1,0 +1,202 @@
+
+<div class="row" ng-show="!user.session">
+<div class="spinner">
+  <div class="dot1"></div>
+  <div class="dot2"></div>
+</div>
+</div>
+
+<div class="table-responsibe"  ng-show="user.session && user.id_tipo_usuario != 2">
+	
+	<div class="form-group">				
+        <div class="input-group">
+            <span class="input-group-addon" ><label for="name">Buscar</label></span>
+            <input type="text" ng-model='search' placeholder="Buscar"  class="form-control">
+       </div>
+   </div>
+
+	<table class="table table-condensed">
+		<thead class="font-white">
+			<tr>
+				<th rowspan="2" class="hidden-xs">Email/phone</th>
+				<th rowspan="2" class="hidden-xs">Ciudad:</th>
+				<th rowspan="2" class="hidden-xs">Detalle</th>
+				<th rowspan="2" class="hidden-xs">Criptomoneda</th>
+				<th colspan="2" class="hidden-xs">Saldo</th>
+				<th rowspan="2" class="hidden-xs">Fecha</th>
+				<th rowspan="2" class="hidden-xs">Guardar</th>
+				<th class="visible-xs">Usuario</th>
+				<th class="visible-xs">Cambiar</th>
+			</tr>
+			<tr>
+				<th class="hidden-xs">Inversión</th>
+				<th class="hidden-xs">Banco</th>			
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="user in users | filter: search" >
+				<form id="monto{{$index}}" name="monto{{$index}}" novalidate="">
+					<td class="font-white hidden-xs">
+						{{user.correo}}
+					</td>
+					<td  class="font-white hidden-xs">
+						{{user.telefono}}
+					</td>
+					<td class="hidden-xs">
+						<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownmenu1" data-toggle="dropdown" aria-extended="true">
+								Detalles
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownmenu1">
+								<li role="presentation" class="dropdown-header">
+									<b>Nombre:</b>
+								</li>
+								<li role="presentation">
+									{{user.nombre}}
+								</li>
+								<li class="divider"></li>
+								<li role="presentation" class="dropdown-header">
+									<b>Ciudad:</b>
+								</li>
+								<li role="presentation">
+									{{user.city}}
+								</li>
+								<li class="divider"></li>
+								<li role="presentation" class="dropdown-header">
+									<b>País:</b>
+								</li>
+								<li role="presentation">
+									{{user.pais}}
+								</li>
+								<li class="divider"></li>
+								<li role="presentation" class="dropdown-header">
+									<b>Teléfono2 ó Correo del Amigo:</b>
+								</li>
+								<li role="presentation">
+									{{user.telefono2}}
+								</li>
+								<li class="divider"></li>
+								<li role="presentation" class="dropdown-header">
+									<div class="btn btn-success" ng-click="saldoActual(user.id, $event)">
+										Saldos
+									</div>
+								</li>
+							</ul>
+						</div>
+					</td>
+					<td class="visible-xs">
+						
+						<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownmenu1" data-toggle="dropdown" aria-extended="true">
+								{{user.correo}}
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownmenu1">
+								<li role="presentation" class="dropdown-header">
+									<b>Nombre:</b>
+								</li>
+								<li role="presentation">
+									{{user.nombre}}
+								</li>
+								<li class="divider"></li>
+								<li role="presentation" class="dropdown-header">
+									<b>Apellido:</b>
+								</li>
+								<li role="presentation">
+									{{user.apellido}}
+								</li>
+								<li class="divider"></li>
+								<li role="presentation" class="dropdown-header">
+									<b>País:</b>
+								</li>
+								<li role="presentation">
+									{{user.pais}}
+								</li>
+								<li class="divider"></li>
+								<li role="presentation" class="dropdown-header">
+									<b>Teléfono:</b>
+								</li>
+								<li role="presentation">
+									{{user.telefono}}
+								</li>
+								<li class="divider"></li>
+								<li role="presentation" class="dropdown-header">
+									<b>Teléfono2 ó Correo del Amigo:</b>
+								</li>
+								<li role="presentation">
+									{{user.telefono2}}
+								</li>
+							</ul>
+						</div>
+					</td>
+					<td class="visible-xs">						
+						<div class="dropdown">
+							<span >
+								<select ng-model="user.cripto" class="form-control" required="">
+									<option value="">Seleccione</option>
+						            <option ng-repeat="cripto in criptomonedas" ng-value="cripto.id">{{cripto.criptomoneda}}</option>
+								</select>			
+							</span>
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownmenu2" data-toggle="dropdown" aria-extended="true">
+								Detalle
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownmenu2">
+								<li >
+									<input type="text" class="form-control" ng-model="user.inversion" required="" onkeypress="checkPercent(event)">
+								</li>
+								<li >
+									<input type="text" class="form-control" ng-model="user.banco" required="" onkeypress="checkPercent(event)">
+								</li>
+								<li >
+								      <md-datepicker ng-model="user.fecha" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+								</li>
+								<li >
+									<button type="button" ng-click="monto(user.id,user.cripto,user.fecha,user.inversion,user.banco)" class="form-control" ng-disabled="monto{{$index}}.$invalid"><span class="glyphicon glyphicon-plus"></span></button>
+								</li>
+							</ul>
+						</div>						
+					</td>
+
+
+					<td class="hidden-xs">
+						<select ng-model="user.cripto" class="form-control" required="">
+							<option value="">Seleccione</option>
+				            <option ng-repeat="cripto in criptomonedas" ng-value="cripto.id">{{cripto.criptomoneda}}</option>
+						</select>			
+					</td>
+					<td class="hidden-xs">
+						<input type="text" class="form-control" ng-model="user.inversion" required="" onkeypress="checkPercent(event)">
+					</td>
+					<td class="hidden-xs">
+						<input type="text" class="form-control" ng-model="user.banco" required="" onkeypress="checkPercent(event)">
+					</td>
+					<td class="hidden-xs">
+					      <md-datepicker ng-model="user.fecha" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+					    
+					</td>
+					<td class="hidden-xs">
+						<button type="button" ng-click="monto(user.id,user.cripto,user.fecha,user.inversion,user.banco)" class="form-control" ng-disabled="monto{{$index}}.$invalid"><span class="glyphicon glyphicon-plus"></span></button>
+					</td>
+					<td> {{ saldoActual.inversion }} </td>
+					<td> {{ saldoActual.banco }} </td>
+				</form>
+			</tr>
+		</tbody>
+	</table>
+
+	<a class="glyphicon glyphicon-remove"  href="#/exit"></a>
+
+</div>
+
+
+
+
+
+
+<div class="row" ng-show="user.id_tipo_usuario==2" ng-hide="!user.session">
+	<div class="col-xs-10 col-xs-offset-1 sans alert alert-danger text-center accessDenied">
+		Usted no Puede Ingresar a esta Pagina.
+	</div>
+</div>
