@@ -29,15 +29,15 @@ class usuarioModel{
 		return $result;
 	}
 
-	function typeAcount(){
-		$sql = "SELECT * FROM tipo_cuenta;";
+	function paises(){
+		$sql = "SELECT * FROM pais;";
 		$objConexion = new conexion();
 		$result = $objConexion->consultar($sql);
 		return $result;
 	}
 
-	function paises(){
-		$sql = "SELECT * FROM pais;";
+	function typeAcount(){
+		$sql = "SELECT * FROM tipo_cuenta;";
 		$objConexion = new conexion();
 		$result = $objConexion->consultar($sql);
 		return $result;
