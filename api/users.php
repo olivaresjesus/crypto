@@ -44,6 +44,8 @@ while($row = mysqli_fetch_array($resultQuery)){
 
       $objetoPais["id_tipo_usuario"]      = $row['id_tipo_usuario'];
 
+      $objetoPais["tipo_cuenta"]      = $row['tipo_cuenta'];
+
 
 
    	/// inserta el objeto con los datos de registro, dentro del arreglo general

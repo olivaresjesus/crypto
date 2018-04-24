@@ -13,7 +13,7 @@ switch ($request->accion) {
 	case 'registrar':
 
 		$objUsuario = new usuarioModel();
-		$resultInsert = $objUsuario->registrar_usuario($request->nombre, $request->city, $request->nacionalidad, $request->correo, $request->telefono, date("Y-m-d"), true, md5($request->pass), $request->telefono2);
+		$resultInsert = $objUsuario->registrar_usuario($request->nombre, $request->city, $request->nacionalidad, $request->correo, $request->telefono, date("Y-m-d"), true, md5($request->pass), $request->telefono2,$request->typeAcount);
 
 		$age = array("sql"=>$resultInsert);
 

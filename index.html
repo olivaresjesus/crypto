@@ -189,6 +189,14 @@
 							                    	<label for="email">Nacionality:</label>
 							                    </span>
 							                    <span class="form-control btn btn-primary" ng-click="selectNacionality()" > {{ paisSelected }} </span>
+							               </div>
+
+							                <div class="input-group">
+							                    <span class="input-group-addon red" >*</span>
+							                    <span class="input-group-addon" >
+							                    	<label for="email">Type Acount:</label>
+							                    </span>
+							                    <span class="form-control btn btn-primary" ng-click="selectAcount()" > {{ acountSelected }} </span>
 							               </div>	
 
 							                <div class="input-group">
@@ -230,6 +238,27 @@
 			            <div class="modal-body">
 							<ul class="list-group">
 								<li class="list-group-item" ng-repeat="pais in paises" > <button class="btn btn-primary" ng-click="addNacionality()" > {{ pais.pais }} </button> </li>
+							</ul> 
+			            </div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="glyphicon glyphicon-ok" ></i>&nbsp;Cerrar</button>
+			        <!--        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="newUser()"><i class="glyphicon glyphicon-ok"></i>&nbsp;Registrar</button>    -->
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
+
+			<div class="modal fade"  id="mdTypeAcount">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header modal-warning">
+			                <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                <p align="center"><b><i class="glyphicon glyphicon-info-sign"></i>&nbsp;Type Acount</b></p>
+			            </div>
+			            <div class="modal-body">
+							<ul class="list-group">
+								<li class="list-group-item" ng-repeat="type in typeAcount" > <button class="btn btn-primary" ng-click="addTypeAcount()" > {{ type.tipo_cuenta | uppercase }} </button> </li>
 							</ul> 
 			            </div>
 			            <div class="modal-footer">

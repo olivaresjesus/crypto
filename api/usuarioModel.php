@@ -5,14 +5,15 @@ require "conexion.php";
 
 class usuarioModel{
 
-	function registrar_usuario($nom, $city, $nac, $email, $tel, $fec_reg, $activo, $pass, $tel2){
+	function registrar_usuario($nom, $city, $nac, $email, $tel, $fec_reg, $activo, $pass, $tel2, $type){
 
 		$sqlValidacion = "SELECT * FROM user WHERE user.correo='$email'";
 		$objConexion = new conexion();
 		$result = $objConexion->consultar($sqlValidacion);
 
 		if ($result->num_rows === 0) {
-			$sql = "INSERT INTO user(nombre,city,nacionalidad,correo,telefono,fecha_reg,activo,password,telefono2,id_tipo_usuario) VALUES('$nom', '$city', $nac, '$email', '$tel', '$fec_reg', $activo, '$pass', '$tel2',2);";
+			$sql = "INSERT INTO user(nombre,city,nacionalidad,correo,telefono,fecha_reg,activo,password,telefono2,id_tipo_usuario,id_tipo_cuenta) VALUES('$nom', '$city', $nac, '$email', '$tel', '$fec_reg', $activo, '$pass', '$tel2',2,$type);";
+			//die($sql);
 			$objConexion = new conexion();
 			$result = $objConexion->agregar($sql);
 			return $result;
@@ -25,6 +26,13 @@ class usuarioModel{
 		$sql = "INSERT INTO monto_actual(id_criptomoneda,id_usuario,inversion,banco,fecha,fecha_reg,activo) VALUES($crip, $usu, $inver, $ban, '$date', '$reg_date', TRUE);";
 		$objConexion = new conexion();
 		$result = $objConexion->agregar($sql);
+		return $result;
+	}
+
+	function typeAcount(){
+		$sql = "SELECT * FROM tipo_cuenta;";
+		$objConexion = new conexion();
+		$result = $objConexion->consultar($sql);
 		return $result;
 	}
 
@@ -44,7 +52,7 @@ class usuarioModel{
 	}
 
 	function users(){		
-		$sql = "SELECT user.id,nombre,city,correo,pais,telefono,telefono2,fecha_reg,id_tipo_usuario FROM user,pais WHERE pais.id=user.nacionalidad;";
+		$sql = "SELECT user.id,nombre,city,correo,pais,telefono,telefono2,fecha_reg,id_tipo_usuario,tipo_cuenta FROM user,pais,tipo_cuenta WHERE pais.id=user.nacionalidad AND tipo_cuenta.id = user.id_tipo_cuenta;";
 		//die($sql);
 		$objConexion = new conexion();
 		$result = $objConexion->consultar($sql);

@@ -42,12 +42,20 @@ appCrypto.controller('home',function($scope, configuracionGlobal,  $location,  $
 
 	$scope.user = {};
 	$scope.paisSelected = "Select a Country";
+	$scope.acountSelected = "Select a Acount's Type";
 
 	$http.get( configuracionGlobal.api_url + "/api/pais.php")
 		.then(function(respuesta){
 
 			//console.log(respuesta);
 			$scope.paises = respuesta.data;
+		});
+
+	$http.get( configuracionGlobal.api_url + "/api/typeAcount.php")
+		.then(function(respuesta){
+
+			//console.log(respuesta);
+			$scope.typeAcount = respuesta.data;
 		});
 
 	$scope.esActivo = function(rutaRecibida){		
@@ -105,6 +113,17 @@ appCrypto.controller('home',function($scope, configuracionGlobal,  $location,  $
 		$scope.user.nacionalidad = this.pais.id;
 		$scope.paisSelected = this.pais.pais;
 		$("#mdNacionality").modal("hide");
+	}
+
+	$scope.selectAcount = function(){
+		$("#mdTypeAcount").modal("show");
+	}
+
+	$scope.addTypeAcount = function(){
+		//alert(this.pais.id);
+		$scope.user.typeAcount = this.type.id;
+		$scope.acountSelected = this.type.tipo_cuenta;
+		$("#mdTypeAcount").modal("hide");
 	}
 
 	$scope.hideAriaExpanded = function(){
