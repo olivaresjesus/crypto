@@ -2,10 +2,10 @@
 -- version 4.0.10.18
 -- https://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: Apr 12, 2018 at 03:33 PM
--- Server version: 5.6.39-cll-lve
--- PHP Version: 5.6.30
+-- Servidor: localhost:3306
+-- Tiempo de generación: 28-04-2018 a las 15:33:33
+-- Versión del servidor: 5.6.39-cll-lve
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,23 +17,23 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `cryptocoin`
+-- Base de datos: `cryptocoin`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `criptomonedas`
+-- Estructura de tabla para la tabla `criptomonedas`
 --
 
 CREATE TABLE IF NOT EXISTS `criptomonedas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `criptomoneda` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `criptomonedas`
+-- Volcado de datos para la tabla `criptomonedas`
 --
 
 INSERT INTO `criptomonedas` (`id`, `criptomoneda`) VALUES
@@ -47,12 +47,13 @@ INSERT INTO `criptomonedas` (`id`, `criptomoneda`) VALUES
 (8, 'Stellar'),
 (9, 'Euro'),
 (10, 'GBP'),
-(11, 'USD');
+(11, 'USD'),
+(12, 'StealthCoin');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `monto_actual`
+-- Estructura de tabla para la tabla `monto_actual`
 --
 
 CREATE TABLE IF NOT EXISTS `monto_actual` (
@@ -65,10 +66,10 @@ CREATE TABLE IF NOT EXISTS `monto_actual` (
   `activo` tinyint(1) NOT NULL,
   `banco` double(20,10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=79 ;
 
 --
--- Dumping data for table `monto_actual`
+-- Volcado de datos para la tabla `monto_actual`
 --
 
 INSERT INTO `monto_actual` (`id`, `id_criptomoneda`, `id_usuario`, `inversion`, `fecha`, `fecha_reg`, `activo`, `banco`) VALUES
@@ -138,12 +139,23 @@ INSERT INTO `monto_actual` (`id`, `id_criptomoneda`, `id_usuario`, `inversion`, 
 (64, 1, 11, 1.0000000000, '2018-04-10', '2018-04-04', 1, 1.0000000000),
 (65, 1, 21, 1.0000000000, '2018-04-11', '2018-04-04', 0, 1.0000000000),
 (66, 1, 21, 1.0000000000, '2018-04-04', '2018-04-04', 0, 1.0000000000),
-(67, 1, 21, 2.0000000000, '2018-04-05', '2018-04-04', 1, 2.0000000000);
+(67, 1, 21, 2.0000000000, '2018-04-05', '2018-04-04', 1, 2.0000000000),
+(68, 1, 37, 100.0000000000, '2018-04-18', '2018-04-17', 1, 100.0000000000),
+(69, 1, 10, 66.0000000000, '2018-04-21', '2018-04-21', 0, 66.0000000000),
+(70, 1, 10, 66.0000000000, '2018-04-21', '2018-04-21', 1, 66.0000000000),
+(71, 2, 37, 1.0000000000, '2018-04-22', '2018-04-22', 1, 0.0000000000),
+(72, 9, 37, 100.0000000000, '2018-04-22', '2018-04-22', 1, 5.0000000000),
+(73, 3, 43, 1231.5420000000, '2018-04-23', '2018-04-23', 1, 2314.4554000000),
+(74, 6, 10, 3232.0000000000, '2018-04-27', '2018-04-28', 1, 0.0000000000),
+(75, 11, 10, 3232.0000000000, '2018-04-27', '2018-04-28', 1, 0.0000000000),
+(76, 12, 10, 3232.0000000000, '2018-04-27', '2018-04-28', 1, 0.0000000000),
+(77, 4, 10, 3232.0000000000, '2018-04-27', '2018-04-28', 1, 577.0000000000),
+(78, 12, 46, 666.0000000000, '2018-04-28', '2018-04-28', 1, 666.0000000000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pais`
+-- Estructura de tabla para la tabla `pais`
 --
 
 CREATE TABLE IF NOT EXISTS `pais` (
@@ -153,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `pais` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=143 ;
 
 --
--- Dumping data for table `pais`
+-- Volcado de datos para la tabla `pais`
 --
 
 INSERT INTO `pais` (`id`, `pais`) VALUES
@@ -303,7 +315,29 @@ INSERT INTO `pais` (`id`, `pais`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_usuario`
+-- Estructura de tabla para la tabla `tipo_cuenta`
+--
+
+CREATE TABLE IF NOT EXISTS `tipo_cuenta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo_cuenta` varchar(25) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `tipo_cuenta`
+--
+
+INSERT INTO `tipo_cuenta` (`id`, `tipo_cuenta`) VALUES
+(1, 'normal'),
+(2, 'gold'),
+(3, 'platinum'),
+(4, 'business');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_usuario`
 --
 
 CREATE TABLE IF NOT EXISTS `tipo_usuario` (
@@ -313,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `tipo_usuario` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `tipo_usuario`
+-- Volcado de datos para la tabla `tipo_usuario`
 --
 
 INSERT INTO `tipo_usuario` (`id`, `tipo_usuario`) VALUES
@@ -323,13 +357,13 @@ INSERT INTO `tipo_usuario` (`id`, `tipo_usuario`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Estructura de tabla para la tabla `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(25) NOT NULL,
-  `apellido` varchar(25) NOT NULL,
+  `city` varchar(25) NOT NULL,
   `nacionalidad` int(3) NOT NULL,
   `correo` varchar(99) NOT NULL,
   `telefono` varchar(25) NOT NULL,
@@ -339,45 +373,49 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(32) NOT NULL,
   `telefono2` varchar(25) DEFAULT NULL,
   `id_tipo_usuario` int(2) NOT NULL,
+  `id_tipo_cuenta` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
 
 --
--- Dumping data for table `user`
+-- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id`, `nombre`, `apellido`, `nacionalidad`, `correo`, `telefono`, `fecha_reg`, `fecha_mod`, `activo`, `password`, `telefono2`, `id_tipo_usuario`) VALUES
-(10, 'jesus nigga', 'olivares nigga', 33, 'test', '12312312', '2018-01-02', NULL, 1, '0cc175b9c0f1b6a831c399e269772661', '12312312', 2),
-(11, 'aaaaa', 'aaaaa', 11, 'a', 'aaaaa', '2018-01-02', NULL, 1, '9271d6eecedd55fcfa6143a33029d496', 'aaaaa', 2),
-(16, 'niggarapias', 'anvaklentin', 1, 'nigga@nigga.nigga', '123456', '2018-01-08', NULL, 1, '9271d6eecedd55fcfa6143a33029d496', '123456', 2),
-(21, 'a', 'a', 27, 'a', '123', '2018-01-22', NULL, 1, '0cc175b9c0f1b6a831c399e269772661', '123', 1),
-(22, 'v', 'v', 138, 'v', '123', '2018-01-22', NULL, 1, '9e3669d19b675bd57058fd4664205d2a', '123', 0),
-(23, 'z', 'z', 140, 'z', '123', '2018-01-22', NULL, 1, 'fbade9e36a3f36d3d676c1b808451dd7', '123', 0),
-(24, 'q', 'q', 124, 'q', '21', '2018-01-22', NULL, 1, '7694f4a66316e53c8cdd9d9954bd611d', '2', 0),
-(26, 's', 's', 126, 's', '21', '2018-01-22', NULL, 1, '03c7c0ace395d80182db07ae2c30f034', '2', 0),
-(27, 'jajaja', 'jajaja', 66, 'jajaja', '123', '2018-01-30', NULL, 1, '9271d6eecedd55fcfa6143a33029d496', '123123', 0),
-(28, 'xd', 'xd', 66, 'xd', '321', '2018-01-30', NULL, 1, '9271d6eecedd55fcfa6143a33029d496', '321321', 0),
-(29, 'ji', 'ji', 95, 'ji', '90', '2018-02-01', NULL, 1, '9271d6eecedd55fcfa6143a33029d496', '9090', 2),
-(30, 'Alex', 'Test', 42, 'athena.up.sa@gmail.com', '534543', '2018-02-02', NULL, 1, 'd1063fc523ef316fba32322382b78830', '2343424', 2),
-(31, 'Rubi', 'Lastname', 14, 'test@test.test', '123', '2018-02-03', NULL, 1, '4817ca8a7afdcf0a67e6dd941a7b00dc', '456', 2),
-(32, 'rubicancun', 'playa', 14, 'rubigarces1@gmail.com', '4444177316', '2018-02-05', NULL, 1, '52158110656d07d7aa7499fffd04a343', '4444177316', 2),
-(33, 'Alessio', 'Cucciolino', 42, 'leo.matt.england@gmail.com', '3357412373', '2018-02-06', NULL, 1, '827ccb0eea8a706c4c34a16891f84e7b', '3357412373', 2),
-(34, 'Alessio', 'Cucciolino', 42, 'cuccioletto@cuccioletto.it', '00393357412373', '2018-02-06', NULL, 1, 'aaf9fa8e171bc8396b0c057fbf03eee1', '00393357412373', 2),
-(35, 'alex', '2', 42, 'asoasof@ssadd.it', '23424332', '2018-02-23', NULL, 1, 'da7837570cd0397accd913dc81824b83', '235324234', 2),
-(36, 'marzo', 'marzo', 1, 'marzo', '123', '2018-03-08', NULL, 1, '52b073c34b10fb26da4b6f099273841e', '123', 2),
-(37, 'support@athenacryptobank.', 'support@athenacryptobank.', 42, 'support@athenacryptobank.com', '0000', '2018-03-08', NULL, 1, '1ca9550c48a31e5c80a98e8b56081bf6', '0000', 1),
-(38, 'test', 'test not obligatory', 42, 'assistenzaroma@hotmail,com', '003954654654', '2018-03-21', NULL, 1, '656563549c226d52be0032e8e790c96b', '0032654649', 2),
-(39, 'test1', 'test1', 23, 'test1', 'test1', '2018-03-21', NULL, 1, '5a105e8b9d40e1329780d62ea2265d8a', 'test1', 2),
-(40, 'Alex', 'Merri', 3, 'sadsad@sad.com', 'sadsad@sad.com', '2018-03-23', NULL, 1, '00920e78786976f1ddee4e0031728173', 'sadsad@sad.com', 2),
-(41, 'Brasil', 'Brasil', 3, 'Brasil', '123', '2018-04-10', NULL, 1, '0cc175b9c0f1b6a831c399e269772661', '123', 2),
-(42, 'cuba', 'cuba', 7, 'cuba', '123', '2018-04-10', NULL, 1, '0cc175b9c0f1b6a831c399e269772661', '123', 2);
+INSERT INTO `user` (`id`, `nombre`, `city`, `nacionalidad`, `correo`, `telefono`, `fecha_reg`, `fecha_mod`, `activo`, `password`, `telefono2`, `id_tipo_usuario`, `id_tipo_cuenta`) VALUES
+(10, 'jesus nigga', 'olivares nigga', 33, 'test', '12312312', '2018-01-02', NULL, 1, '0cc175b9c0f1b6a831c399e269772661', '12312312', 2, 1),
+(16, 'niggarapias', 'anvaklentin', 1, 'nigga@nigga.nigga', '123456', '2018-01-08', NULL, 1, '9271d6eecedd55fcfa6143a33029d496', '123456', 2, 1),
+(21, 'a', 'a', 27, 'a', '123', '2018-01-22', NULL, 1, '0cc175b9c0f1b6a831c399e269772661', '123', 1, 1),
+(22, 'v', 'v', 138, 'v', '123', '2018-01-22', NULL, 1, '9e3669d19b675bd57058fd4664205d2a', '123', 0, 1),
+(23, 'z', 'z', 140, 'z', '123', '2018-01-22', NULL, 1, 'fbade9e36a3f36d3d676c1b808451dd7', '123', 0, 1),
+(24, 'q', 'q', 124, 'q', '21', '2018-01-22', NULL, 1, '7694f4a66316e53c8cdd9d9954bd611d', '2', 0, 1),
+(26, 's', 's', 126, 's', '21', '2018-01-22', NULL, 1, '03c7c0ace395d80182db07ae2c30f034', '2', 0, 1),
+(27, 'jajaja', 'jajaja', 66, 'jajaja', '123', '2018-01-30', NULL, 1, '9271d6eecedd55fcfa6143a33029d496', '123123', 0, 1),
+(28, 'xd', 'xd', 66, 'xd', '321', '2018-01-30', NULL, 1, '9271d6eecedd55fcfa6143a33029d496', '321321', 0, 1),
+(29, 'ji', 'ji', 95, 'ji', '90', '2018-02-01', NULL, 1, '9271d6eecedd55fcfa6143a33029d496', '9090', 2, 1),
+(30, 'Alex', 'Test', 42, 'athena.up.sa@gmail.com', '534543', '2018-02-02', NULL, 1, 'd1063fc523ef316fba32322382b78830', '2343424', 2, 1),
+(31, 'Rubi', 'Lastname', 14, 'test@test.test', '123', '2018-02-03', NULL, 1, '4817ca8a7afdcf0a67e6dd941a7b00dc', '456', 2, 1),
+(32, 'rubicancun', 'playa', 14, 'rubigarces1@gmail.com', '4444177316', '2018-02-05', NULL, 1, '52158110656d07d7aa7499fffd04a343', '4444177316', 2, 1),
+(33, 'Alessio', 'Cucciolino', 42, 'leo.matt.england@gmail.com', '3357412373', '2018-02-06', NULL, 1, '827ccb0eea8a706c4c34a16891f84e7b', '3357412373', 2, 1),
+(34, 'Alessio', 'Cucciolino', 42, 'cuccioletto@cuccioletto.it', '00393357412373', '2018-02-06', NULL, 1, 'aaf9fa8e171bc8396b0c057fbf03eee1', '00393357412373', 2, 1),
+(35, 'alex', '2', 42, 'asoasof@ssadd.it', '23424332', '2018-02-23', NULL, 1, 'da7837570cd0397accd913dc81824b83', '235324234', 2, 1),
+(36, 'marzo', 'marzo', 1, 'marzo', '123', '2018-03-08', NULL, 1, '52b073c34b10fb26da4b6f099273841e', '123', 2, 1),
+(37, 'support@athenacryptobank.', 'support@athenacryptobank.', 42, 'support@athenacryptobank.com', '0000', '2018-03-08', NULL, 1, 'dc647eb65e6711e155375218212b3964', '0000', 1, 1),
+(38, 'test', 'test not obligatory', 42, 'assistenzaroma@hotmail,com', '003954654654', '2018-03-21', NULL, 1, '656563549c226d52be0032e8e790c96b', '0032654649', 2, 1),
+(39, 'test1', 'test1', 23, 'test1', 'test1', '2018-03-21', NULL, 1, '5a105e8b9d40e1329780d62ea2265d8a', 'test1', 2, 1),
+(40, 'Alex', 'Merri', 3, 'sadsad@sad.com', 'sadsad@sad.com', '2018-03-23', NULL, 1, '00920e78786976f1ddee4e0031728173', 'sadsad@sad.com', 2, 1),
+(41, 'Brasil', 'Brasil', 3, 'Brasil', '123', '2018-04-10', NULL, 1, '0cc175b9c0f1b6a831c399e269772661', '123', 2, 1),
+(42, 'cuba', 'cuba', 7, 'cuba', '123', '2018-04-10', NULL, 1, '0cc175b9c0f1b6a831c399e269772661', '123', 2, 1),
+(43, 'Tesy', 'Roma', 4, '3333', '3333', '2018-04-23', NULL, 1, '2be9bd7a3434f7038ca27d1918de58bd', '', 2, 1),
+(44, 'caribe', 'caribe', 1, 'caribe', '1', '2018-04-24', NULL, 1, '0cc175b9c0f1b6a831c399e269772661', '1', 2, 3),
+(45, 'sallo', 'sallo', 4, '4444', '4444', '2018-04-28', NULL, 1, 'dbc4d84bfcfe2284ba11beffb853a8c4', '44444444', 2, 3),
+(46, '666', '666', 12, '666', '666', '2018-04-28', NULL, 1, '0cc175b9c0f1b6a831c399e269772661', '666', 2, 3);
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `user`
+-- Filtros para la tabla `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `fk_usuarios_pais` FOREIGN KEY (`id`) REFERENCES `pais` (`id`);
