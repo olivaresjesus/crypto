@@ -16,6 +16,13 @@ appCrypto.controller('acount',function($scope,configuracionGlobal,$http,$log,$lo
 															$location.path().length-3),
 												"")+"/it";
 
+	$http.get( configuracionGlobal.api_url + "/api/auth.php")
+		.then(function(respuesta){
+			//console.log(respuesta);
+			$scope.users = respuesta.data;
+		});
+
+
 	$scope.config = configuracionGlobal;
 	if ($routeParams.lang === 'es') {
 		$scope.lang = configuracionGlobal.lang.es.acount;

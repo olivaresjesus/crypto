@@ -1,87 +1,91 @@
 <?php
 
+//die(json_encode($_SERVER));
 
+if ($_SERVER["HTTP_REFERER"] == "http://localhost/crypto/") {
 
-require "usuarioModel.php";
+	require "usuarioModel.php";
 
-header("Access-Control-Allow-Origin: *");
+	header("Access-Control-Allow-Origin: *");
 
-header('Access-Control-Allow-Methods: GET, POST');
+	header('Access-Control-Allow-Methods: GET, POST');
 
-header("Access-Control-Allow-Headers: X-Requested-With");
+	header("Access-Control-Allow-Headers: X-Requested-With");
 
-header('Access-Control-Allow-Headers: Content-Type, x-xsrf-token');
+	header('Access-Control-Allow-Headers: Content-Type, x-xsrf-token');
 
-
-
-session_start();
-
-
-
-if(isset($_SESSION["nombre"]) && isset($_SESSION["id"])){
-
-		//die('{"session": true,"id": "'.$_SESSION["id"].'","id_tipo_usuario": "'.$_SESSION["id_tipo_usuario"].'"}');
-
-		die(json_encode($_SESSION));
-
-}	
+	session_start();
 
 
 
-$request = json_decode(file_get_contents("php://input"));
+	if(isset($_SESSION["nombre"]) && isset($_SESSION["id"])){
+
+			//die('{"session": true,"id": "'.$_SESSION["id"].'","id_tipo_usuario": "'.$_SESSION["id_tipo_usuario"].'"}');
+
+			die(json_encode($_SESSION));
+
+	}	
 
 
 
-$objUsuario = new usuarioModel();
-
-//header("HTTP/1.1 401 Unauthorized");
-
-//die(json_encode($request));
-
-//die(json_encode($_POST));
-
-//die(json_encode($_GET));
+	$request = json_decode(file_get_contents("php://input"));
 
 
 
-if (isset($request->correo) && isset($request->pass)) {
+	$objUsuario = new usuarioModel();
+
+	//header("HTTP/1.1 401 Unauthorized");
+
+	//die(json_encode($request));
+
+	//die(json_encode($_POST));
+
+	//die(json_encode($_GET));
 
 
 
-	$auth = $objUsuario->auth($request->correo, md5($request->pass));
+	if (isset($request->correo) && isset($request->pass)) {
 
 
 
-	if ($auth->num_rows > 0) {	
+		$auth = $objUsuario->auth($request->correo, md5($request->pass));
 
 
 
-		$result = $auth->fetch_assoc();
+		if ($auth->num_rows > 0) {	
 
 
 
-		$_SESSION["id"] = $result["id"];
-
-		$_SESSION["nombre"] = $result["nombre"];
-
-		$_SESSION["city"] = $result["city"];
-
-		$_SESSION["id_tipo_usuario"] = $result["id_tipo_usuario"];
-
-		$_SESSION["session"] = true;
+			$result = $auth->fetch_assoc();
 
 
 
-		echo json_encode($_SESSION);
+			$_SESSION["id"] = $result["id"];
+
+			$_SESSION["nombre"] = $result["nombre"];
+
+			$_SESSION["city"] = $result["city"];
+
+			$_SESSION["id_tipo_usuario"] = $result["id_tipo_usuario"];
+
+			$_SESSION["session"] = true;
+
+
+
+			echo json_encode($_SESSION);
+
+		}else{
+
+			die('{"session": false, "first": true }');
+
+		}
 
 	}else{
 
-		die('{"session": false, "first": true }');
+			die('{"session": false, "first": false }');
 
-	}
+		}
 
 }else{
-
-		die('{"session": false, "first": false }');
-
-	}
+	die("NIGGA");
+}

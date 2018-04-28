@@ -1,9 +1,14 @@
+<div class="row" ng-show="user.id_tipo_usuario==2" ng-hide="user.session || user.id_tipo_usuario!==2">
+	<div class="col-xs-10 col-xs-offset-1 sans alert alert-danger text-center accessDenied">
+		Usted no Puede Ingresar a esta Pagina.
+	</div>
+</div>
 
 <div class="row" ng-show="!user.session">
-<div class="spinner">
-  <div class="dot1"></div>
-  <div class="dot2"></div>
-</div>
+	<div class="spinner">
+	  <div class="dot1"></div>
+	  <div class="dot2"></div>
+	</div>
 </div>
 
 <div class="table-responsibe"  ng-show="user.session && user.id_tipo_usuario != 2">
@@ -82,7 +87,7 @@
 										Saldos
 									</div>
 								</li>
-								<!--
+								
 								<li class="divider"></li>
 								<li role="presentation" class="dropdown-header">
 									<b>Tipo de Cuenta:</b>
@@ -90,7 +95,7 @@
 								<li role="presentation">
 									{{user.tipo_cuenta}}
 								</li>
-								-->
+								
 							</ul>
 						</div>
 					</td>
@@ -197,15 +202,4 @@
 
 	<a class="glyphicon glyphicon-remove"  href="#/exit"></a>
 
-</div>
-
-
-
-
-
-
-<div class="row" ng-show="user.id_tipo_usuario==2" ng-hide="!user.session">
-	<div class="col-xs-10 col-xs-offset-1 sans alert alert-danger text-center accessDenied">
-		Usted no Puede Ingresar a esta Pagina.
-	</div>
 </div>

@@ -5,8 +5,8 @@
 		function conectar(){
 
 			$server = "localhost";
-			$username = "mysql";
-			$password = "mysql";
+			$username = "root";
+			$password = "";
 			$db = "cryptocoin";
 
 			// Create connection
